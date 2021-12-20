@@ -9,7 +9,7 @@ from bson.objectid import ObjectId
 imgWidth = 2704
 imgHeight = 1520
 
-load_dotenv() # Se toman las variables de entorno del archivo .env. Alli estan el usuario y la clave de la base de datos
+# load_dotenv() # Se toman las variables de entorno del archivo .env. Alli estan el usuario y la clave de la base de datos
 dbUser = os.environ['DBUSER']
 dbPass = os.environ['DBPASS']
 
@@ -55,15 +55,15 @@ def details(id):
     
     light = collection.find_one({"_id":ObjectId(id)})
     try:
-        light = parseLight(light)
+        processedLight = parseLight(light)
     except TypeError:
-        light = None
+        processedLight = None
 
     if light != None:
         title = f"Details {light['imgname']}"
     else:
         title = "Error"
-    return render_template('details.html', title = title, light=light, imgWidth = imgWidth, imgHeight = imgHeight, idNext = idNext, idPrev = idPrev)
+    return render_template('details.html', title = title, light=processedLight, rawLight = light, imgWidth = imgWidth, imgHeight = imgHeight, idNext = idNext, idPrev = idPrev)
 
 def parseLight(light):
     try:
