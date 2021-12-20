@@ -1,0 +1,16 @@
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 4px;
+  }
+
+.navigation{
+    display: flex;
+    flex-direction: row;
+}
+.button {
+    font-size: x-large;
+    padding: 15px;
+    border: 2px solid black;
+    margin: 3px;
+}

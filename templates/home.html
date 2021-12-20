@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1>Traffic lights dataset</h1>
+<p>This dataset is composed of 3000 images, 2600 of them are labeled and 400 are for testing purposes. The objective of this dataset is to identify the traffic lights in a given image. The result should be expressed giving the coordinates of the traffic light in the image, the color, and the tipe of traffic light.</p>
+<p>This tools is constructed with the objective of visualizing more clearly what the properties of the labels mean. This is done placing the data on top of the image.</p>
+<p>Appart from this, the filtering and sorting of the images allows a quick access to all the possible properties of the dataset.</p>
+
+<h2> <a href="{{url_for('table')}}">Get started</a> </h2>
+{% endblock %}

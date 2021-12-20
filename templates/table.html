@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1> Train Images</h1>
+
+<table>
+    <tr><th rowspan="2">Image name</th> <th rowspan="2">Color</th> <th rowspan="2">Shape</th> <th colspan="4">Bounding box</th> <th rowspan="2"> Occluded</th> <th rowspan="2">Truncated</th> <th rowspan="2">Difficult</th> <th rowspan="2">Value</th><th rowspan="2">Details</th></tr>
+
+    <tr><th>xmin</th><th>ymin</th><th>xmax</th><th>ymax</th></tr>
+    {% for light in lights %}
+    {% if light.ignore == 0 %}
+    <tr><td>{{light.imgname}}</td> <td>{{light.color}}</td> <td>{{light.shape}}</td> <td>{{light.xmin}}</td><td>{{light.ymin}}</td><td>{{light.xmax}}</td><td>{{light.ymax}}</td><td>{{light.occluded}}</td> <td>{{light.truncated}}</td> <td>{{light.difficult}}</td> <td>{{light.value}}</td><td> <a href="{{url_for('details', id=light._id )}}">Details</a> </td></tr>
+    {% endif %}
+    {% endfor %}
+</table>
+
+
+{% endblock %}

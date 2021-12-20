@@ -1,0 +1,74 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="navigation">
+    {% if idPrev is not none %}
+    <button class="button" id="prev">Anterior</button>
+    
+    {% endif %}
+    {% if idNext is not none %}
+    <button class="button" id="next">Siguiente</button>
+    {% endif %}
+    <button class="button" id="lista">Lista</button>
+</div>
+
+<canvas id="canvasImg" width="{{imgWidth}}" height="{{imgHeight}}" >
+    
+</canvas>
+<p>{{light}}</p>
+
+<script>
+    let imgWidth = {{imgWidth}}
+    let imgHeight = {{imgHeight}}
+    let heightFromW = imgHeight/imgWidth
+    let scale = window.innerWidth / imgWidth
+
+    let canvas = document.querySelector("#canvasImg")
+    let ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth
+    canvas.height = canvas.width * heightFromW
+    ctx.scale(scale, scale)
+    
+    
+    // window.addEventListener('resize', scaleCanvas)
+    // let resizeCanvas = function(event){
+    //     canvas.width = window.innerWidth
+    //     canvas.height = canvas.width * heightFromW
+    // }
+    // resizeCanvas();
+
+
+    let img = new Image();
+    img.onload  = function(){
+        ctx.drawImage(img, 0, 0)
+        {% if light.xmin is not none %}
+            ctx.rect('{{light.xmin}}', '{{light.ymin}}', '{{light.xmax - light.xmin}}', '{{light.ymax - light.ymin}}')
+            ctx.lineWidth = "4"
+            ctx.strokeStyle = "red"
+            ctx.stroke()
+        {% endif %}
+    }
+    img.src = '{{light.url}}';
+
+    let butPrev = document.querySelector("#prev")
+    let butNext = document.querySelector("#next")
+    let butLista = document.querySelector("#lista")
+    {% if idNext is not none %}
+        butNext.onclick = ()=>{window.location.href = "{{url_for('details', id=idNext )}}"}
+    {% endif %}
+        
+    {% if idPrev is not none %}
+    butPrev.onclick = ()=>{window.location.href = "{{url_for('details', id=idPrev )}}"}
+    {% endif %}
+    butLista.onclick = ()=>{window.location.href = "{{url_for('table')}}"}
+    
+    // function draw(){
+    //     let img = Image();
+    //     img.onload  = function(){
+    //         ctx.drawImage(img, 0, 0)
+    //     }
+    //     img.src = '{{light.url}}';
+    // }
+</script>
+
+{% endblock %}
