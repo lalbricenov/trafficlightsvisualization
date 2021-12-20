@@ -44,7 +44,7 @@
         {% if light.xmin is not none %}
             ctx.rect('{{light.xmin}}', '{{light.ymin}}', '{{light.xmax - light.xmin}}', '{{light.ymax - light.ymin}}')
             ctx.lineWidth = "4"
-            ctx.strokeStyle = "red"
+            ctx.strokeStyle = "magenta"
             ctx.stroke()
         {% endif %}
     }

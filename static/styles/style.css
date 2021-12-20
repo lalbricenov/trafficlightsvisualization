@@ -1,3 +1,10 @@
+body{
+    width: 100%;
+    display: flex;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    align-items: center;
+    flex-direction: column;
+}
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
